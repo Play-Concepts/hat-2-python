@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  python-pda:
+    container_name: "python-pda"
+    image: "python-pda:latest"
+    restart: unless-stopped
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      labels:
+        - python-pda
+    volumes:
+      - ./app:/app
+    ports:
+      - "${HOST}:${PORT}:${PORT}"
+    command: uvicorn --log-level ${LOG_LEVEL} --reload --host ${HOST} --port ${PORT} main:app

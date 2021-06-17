@@ -1,0 +1,17 @@
+{
+  "template": "https://github.com/rednafi/fastapi-nano.git",
+  "commit": "f4cdcb3509631f37c1279c6dd90b4a413a52660e",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "repo": "python-pda",
+      "api_a": "data",
+      "api_b": "data_debit",
+      "year": "2021",
+      "fname": "Terry Lee",
+      "email": "terry.lee.m@gmail.com",
+      "_template": "https://github.com/rednafi/fastapi-nano.git"
+    }
+  },
+  "directory": null
+}

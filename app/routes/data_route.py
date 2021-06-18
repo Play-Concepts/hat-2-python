@@ -1,22 +1,31 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends
-from typing import Dict
 
 from app.core.auth import get_current_user
+from app.models.data import DataRecord
 from app.models.responses import BaseResponses
 
 router = APIRouter()
+router.prefix = "/api/v2.6"
 
 
-@router.get("/api_a/{num}", tags=["data"],
+@router.get("/data/{num}", tags=["data"],
             responses=BaseResponses)
 async def view_a(
     num: int,
     auth: Depends = Depends(get_current_user),
-) -> Dict[str, int]:
+) -> DataRecord:
 
     data = {
-        'data': num
+        'data': num,
+        "nested": {
+            "hello": "world"
+        }
     }
-    return data
+
+    data_record = DataRecord(
+        endpoint="elyria/identity",
+        data=data
+    )
+    return data_record

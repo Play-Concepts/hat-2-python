@@ -29,10 +29,19 @@ class BadRequestError(BaseModel):
     message: Union[str, Json]
 
 
+class SuccessResponse(BaseModel):
+    message: Union[str, Json]
+
+
 AuthorisationError = AuthorizationError
 
-
 BaseResponses = {
+    400: {"model": BadRequestError},
+    401: {"model": AuthenticationError},
+    403: {"model": AuthorizationError}
+}
+
+BaseResponsesWith404 = {
     400: {"model": BadRequestError},
     401: {"model": AuthenticationError},
     403: {"model": AuthorizationError},

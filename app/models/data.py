@@ -5,6 +5,14 @@ from pydantic.class_validators import validator
 from pydantic.types import Json
 
 
+class DataRecordIn(CoreModel):
+    data: Json
+
+    @validator('data', pre=True, allow_reuse=True)
+    def decode_json(cls, v):
+        return CoreModel.decode_json(cls, v)
+
+
 class DataRecord(IDModelMixin, CoreModel):
     """
     Any common logic to be shared by all models goes here.
